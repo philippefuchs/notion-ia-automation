@@ -1,13 +1,11 @@
 name: Exécuter Prompts IA Notion
 on:
-  schedule:
-    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 jobs:
   run:
     runs-on: ubuntu-latest
-        steps:
+    steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
@@ -17,4 +15,3 @@ jobs:
       env:
         NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
-        PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
