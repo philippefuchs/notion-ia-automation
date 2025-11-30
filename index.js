@@ -27,7 +27,7 @@ async function main() {
         page.properties.Prompt.rich_text[0]?.plain_text || '';
 
       if (!prompt) {
-        console.log(Page ${pageId} sans prompt, ignorée.);
+        console.log('Page ${pageId} sans prompt, ignorée.');
         continue;
       }
 
