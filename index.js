@@ -70,7 +70,7 @@ async function main() {
         }
       });
 
-      console.log(Page ${pageId} mise à jour.);
+      console.log('Appel Perplexity pour la page  ${pageId} mise à jour.');
     }
 
     console.log("Script terminé sans erreur.");
