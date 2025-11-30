@@ -19,7 +19,7 @@ async function main() {
       }
     });
 
-    console.log('Nombre de pages à traiter : ${response.results.length}');
+    console.log(`Nombre de pages à traiter : ${response.results.length}`);
 
     for (const page of response.results) {
       const pageId = page.id;
@@ -27,11 +27,11 @@ async function main() {
         page.properties.Prompt.rich_text[0]?.plain_text || '';
 
       if (!prompt) {
-        console.log('Page ${pageId} sans prompt, ignorée.');
+        console.log(`Page ${pageId} sans prompt, ignorée.`);
         continue;
       }
 
-      console.log(Appel Perplexity pour la page ${pageId}...);
+      console.log(`Appel Perplexity pour la page ${pageId}...`);
 
       // 2. Appel API Perplexity
       const completion = await axios.post(
@@ -44,7 +44,7 @@ async function main() {
         },
         {
           headers: {
-            Authorization: Bearer ${process.env.PERPLEXITY_API_KEY},
+            Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
             'Content-Type': 'application/json'
           }
         }
@@ -70,7 +70,7 @@ async function main() {
         }
       });
 
-      console.log('Appel Perplexity pour la page  ${pageId} mise à jour.');
+      console.log(`Page ${pageId} mise à jour.`);
     }
 
     console.log("Script terminé sans erreur.");
