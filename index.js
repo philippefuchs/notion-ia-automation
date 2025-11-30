@@ -19,7 +19,7 @@ async function main() {
       }
     });
 
-    console.log(Nombre de pages à traiter : ${response.results.length});
+    console.log('Nombre de pages à traiter : ${response.results.length}');
 
     for (const page of response.results) {
       const pageId = page.id;
