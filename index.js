@@ -33,24 +33,29 @@ async function main() {
 
       console.log(`Appel Perplexity pour la page ${pageId}...`);
 
-      // 2. Appel API Perplexity
+      console.log(`Appel Gemini pour la page ${pageId}...`);
+
       const completion = await axios.post(
-        'https://api.perplexity.ai/chat/completions',
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
         {
-          model: 'sonar',
-          messages: [
-            { role: 'user', content: prompt }
+          contents: [
+            {
+              parts: [
+                { text: prompt }
+              ]
+            }
           ]
         },
         {
           headers: {
-            Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'x-goog-api-key': process.env.GOOGLE_API_KEY
           }
         }
       );
 
-      const answer = completion.data.choices[0].message.content;
+      const answer =
+        completion.data.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
       // 3. Mettre à jour la page Notion
       await notion.pages.update({
